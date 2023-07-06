@@ -1,0 +1,163 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font: normal 1em arial;
+}
+
+body {
+    background:  linear-gradient(153deg, #8a39af, #00d4ff) fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.board {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before, 
+.board.x .cell:not(.x):not(.circle):hover::after {
+    background-color: #d3d3d39c !important;
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::before, 
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    border: 15px solid #d3d3d39c !important;
+}
+
+.cell:nth-child(1),.cell:nth-child(2),.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(1),.cell:nth-child(4),.cell:nth-child(7) {
+    border-left: none;
+}
+
+.cell:nth-child(7),.cell:nth-child(8),.cell:nth-child(9) {
+    border-bottom: none;
+}
+
+.cell:nth-child(3),.cell:nth-child(6),.cell:nth-child(9) {
+    border-right: none;
+}
+
+.cell {
+    width: 150px;
+    height: 150px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.cell.x , .cell.circle{
+    cursor: not-allowed;
+}
+
+/* X */
+.cell.x::after,
+.cell.x::before, 
+.board.x .cell:not(.x):not(.circle):hover::before, 
+.board.x .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    width: calc(110px * 0.9);
+    height: calc(160px * 0.10);
+    border-radius: 10px;
+    background-color: white;
+    position: absolute;
+} 
+
+.cell.x::before, 
+.board.x .cell:not(.x):not(.circle):before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after, 
+.board.x .cell:not(.x):not(.circle):after {
+    transform: rotate(-45deg);
+}
+
+/* Circle */
+.cell.circle::after, 
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before, 
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    width: calc(70px * 0.9);
+    height: calc(70px * 0.9);
+    background-color: transparent;
+    position: absolute;
+    border-radius: 50%;
+    border: 15px solid white;
+} 
+
+/* Mensagem de vitoria*/
+.winning-mensage {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.514);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.winning-mensage .winning-mensage-text {
+    margin: 20px;
+    font-size: 4em;
+    color: white;
+}
+
+.winning-mensage .button {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 3rem;
+    padding: 0 2rem;
+    border-radius: 10px;
+    background-size: 400%;
+    background: #3d3a4e;
+    color: #fff;
+    font-size: 1.3em;
+    border: none;
+}
+  
+.button:hover::before {
+    transform: scaleX(1);
+}
+  
+.button-content {
+    position: relative;
+    z-index: 1;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    background: linear-gradient(182.3deg, #3eeb09 10.8%, #1f9e1f 94.3%);
+    transition: all 0.475s;
+}
+
+.show-winning-message {
+    display: flex;
+}
+
+
